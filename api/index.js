@@ -23,4 +23,6 @@ app.listen(3000, () => {
     connectDb();
 })
 
-app.get()
+app.get('/test', (req, res) => {
+    res.json({messge: 'Api is working'})
+})
