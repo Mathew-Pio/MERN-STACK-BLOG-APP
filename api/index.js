@@ -10,7 +10,7 @@ mongoose.set('strictQuery', false);
 const connectDb = async() => {
     try{
         await mongoose.connect(mongodb)
-        console.log('Database is running')
+        console.log('Database is running..')
     }catch(err){
         console.log(err)
     }
