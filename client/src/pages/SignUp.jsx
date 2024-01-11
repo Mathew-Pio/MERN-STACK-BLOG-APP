@@ -14,7 +14,7 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(!formData.username || !formData.email || !formData){
+    if(!formData.username || !formData.email || !formData.password){
       return setErrorMessage('Pls fill out all  fields')
     }
 
