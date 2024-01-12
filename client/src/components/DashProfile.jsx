@@ -1,4 +1,4 @@
-import { TextInput } from "flowbite-react"
+import { Button, TextInput } from "flowbite-react"
 import { useSelector } from "react-redux"
 
 export default function DashProfile() {
@@ -13,7 +13,14 @@ export default function DashProfile() {
             <TextInput type="text" id='username' placeholder="username" defaultValue={currentUser.username} />
             <TextInput type="email" id='email' placeholder="email" defaultValue={currentUser.email} />
             <TextInput type="password" id='password' placeholder="password" />
+            <Button type='submit' gradientDuoTone='purpleToBlue' outline>
+                Update
+            </Button>
         </form>
+        <div className="text-red-500 flex justify-between mt-5">
+            <span className="cursor-pointer">Delete Account</span>
+            <span className="cursor-pointer">Sign Out</span>
+        </div>
     </div>
   )
 }
