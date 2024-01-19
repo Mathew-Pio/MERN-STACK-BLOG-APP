@@ -48,7 +48,7 @@ export default function Header() {
             <AiOutlineSearch />
         </Button>
         <div className="flex gap-2 md:order-2">
-            <Button className='w-12 h-10 hidden sm:inline' color='gray' pill onClick={() => dispatch(toogleTheme())}>
+            <Button className='duration-700 w-12 h-10 hidden sm:inline' color='gray' pill onClick={() => dispatch(toogleTheme())}>
                 {theme === 'dark' ? <FaSun color='yellow' /> : <FaMoon />}
             </Button>
             {currentUser ? (
