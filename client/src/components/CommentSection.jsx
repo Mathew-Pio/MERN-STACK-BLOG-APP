@@ -7,7 +7,17 @@ export default function CommentSection({postId}) {
     const {currentUser} = useSelector(state => state.user)
     const [comment, setComment] = useState('');
     const handleSubmit = async (e) => {
-
+        e.preventDefault();
+        if(comment.length > 200){
+            return;
+        }
+        const res = await fetch('/api/comment/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({ content: comment, postId, userId: currentUser._id }),
+        })
     };
 
   return (
