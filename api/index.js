@@ -5,6 +5,7 @@ import userRoute from './routes/user.js'
 import authRoute from './routes/auth.js'
 import cookieParser from 'cookie-parser';
 import postRoute from './routes/post.js'
+import commentRoutes from './routes/comment.js';
 
 dotenv.config();
 
@@ -25,7 +26,8 @@ app.use(express.json())
 app.use(cookieParser())
 app.use('/api/user', userRoute);
 app.use('/api/auth', authRoute);
-app.use('/api/post', postRoute)
+app.use('/api/post', postRoute);
+app.use('/api/comment', commentRoutes);
 
 
 app.use((err, req, res, next) => {
