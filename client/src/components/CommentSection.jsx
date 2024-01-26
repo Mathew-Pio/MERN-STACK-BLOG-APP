@@ -1,5 +1,5 @@
 import { Alert, Button, TextInput, Textarea } from 'flowbite-react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -7,6 +7,8 @@ export default function CommentSection({postId}) {
     const {currentUser} = useSelector(state => state.user)
     const [comment, setComment] = useState('');
     const [commentError, setCommentError] = useState(null);
+    const [comments, setComments] = useState([]);
+    console.log(comments);
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(comment.length > 200){
@@ -29,6 +31,21 @@ export default function CommentSection({postId}) {
             setCommentError(error);
         }
     };
+
+    useEffect(() => {
+        const getComments = async() => {
+            try{
+                const res = await fetch(`/api/comment/getPostComments/${postId}`);
+                if(res.ok){
+                    const data = await res.json();
+                    setComments(data);
+                }
+            }catch(error){
+                console.log(error.message);
+            }
+        }
+        getComments();
+    }, [postId])
 
   return (
     <div className="max-w-2xl mx-auto w-full p-3">
