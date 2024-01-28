@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 export default function Comment({comment, onLike}) {
     const {currentUser} = useSelector((state) => state.user)
     const [user, setUser] = useState({});
-    console.log(comment)
     useEffect(() => {
         const getUser = async () => {
             try{
@@ -37,6 +36,7 @@ export default function Comment({comment, onLike}) {
                     currentUser && comment.likes.includes(currentUser._id) && '!text-blue-500'}`}>
                 <FaThumbsUp className="text-sm" />
                 </button>
+                <p className="text-gray-400">{comment.numberOfLikes > 0 && comment.numberOfLikes + " " + (comment.numberOfLikes === 1 ? "like" : "likes")}</p>
             </div>
         </div>
     </div>

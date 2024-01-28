@@ -15,6 +15,8 @@ export const createComment = async(req, res, next) => {
             userId
         });
         await newComment.save();
+
+        res.status(200).json(newComment);
     }catch(error){
         next(error);
     }
@@ -25,7 +27,7 @@ export const getPostComments = async(req, res, next) => {
         const comments = await Comment.find({postId: req.params.postId}).sort({
             createdAt: -1,
         });
-        return res.status(200).json(comments)
+        res.status(200).json(comments)
     }catch(error){
         next(error);
     }
@@ -47,7 +49,7 @@ export const likeComment = async(req, res, next) => {
             comment.likes.splice(userIndex, 1)
         }
         await comment.save();
-        return res.status(200).json(comment);
+        res.status(200).json(comment);
     }catch(error){
         next(error)
     }

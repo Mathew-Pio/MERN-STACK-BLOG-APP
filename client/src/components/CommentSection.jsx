@@ -5,12 +5,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import Comment from './Comment'
 
 export default function CommentSection({postId}) {
-    const {navigate} = useNavigate();
-    const {currentUser} = useSelector(state => state.user)
+    const navigate = useNavigate();
+    const {currentUser} = useSelector((state) => state.user)
     const [comment, setComment] = useState('');
     const [commentError, setCommentError] = useState(null);
     const [comments, setComments] = useState([]);
-    console.log(comments);
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(comment.length > 200){
