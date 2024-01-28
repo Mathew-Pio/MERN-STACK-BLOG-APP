@@ -4,9 +4,8 @@ import { FaThumbsUp } from 'react-icons/fa'
 import { useSelector } from "react-redux";
 
 export default function Comment({comment, onLike}) {
-    const currentUser = useSelector((state) => state.user)
+    const {currentUser} = useSelector((state) => state.user)
     const [user, setUser] = useState({});
-    console.log(user);
     console.log(comment)
     useEffect(() => {
         const getUser = async () => {
@@ -34,7 +33,8 @@ export default function Comment({comment, onLike}) {
             </div>
             <p className="text-gray-500 pb-2">{comment.content}</p>
             <div className="">
-                <button type='button' onClick={() => onLike(comment._id)} className={`text-gray-400 hover:text-blue-500 ${currentUser && comment.likes.includes(currentUser._id) && '!text-blue-500'}`}>
+                <button type='button' onClick={() => onLike(comment._id)} className={`text-gray-400 hover:text-blue-500 ${
+                    currentUser && comment.likes.includes(currentUser._id) && '!text-blue-500'}`}>
                 <FaThumbsUp className="text-sm" />
                 </button>
             </div>
