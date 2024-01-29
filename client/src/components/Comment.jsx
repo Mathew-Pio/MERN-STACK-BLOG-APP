@@ -2,9 +2,9 @@ import { useEffect, useState } from "react"
 import moment from 'moment';
 import { FaThumbsUp } from 'react-icons/fa'
 import { useSelector } from "react-redux";
-import { Textarea } from "flowbite-react";
+import { Button, Textarea } from "flowbite-react";
 
-export default function Comment({comment, onLike}) {
+export default function Comment({comment, onLike, onEdit}) {
     const {currentUser} = useSelector((state) => state.user)
     const [user, setUser] = useState({});
     const [isEditing, setIsEditing] = useState(false);
@@ -29,6 +29,22 @@ export default function Comment({comment, onLike}) {
         setEditedContent(comment.content)
     }
 
+    const handleSave = async () => {
+        try{
+            const res = await fetch(`/api/comment/editComment/${comment._id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type' : 'application/json'
+                },
+                body: JSON.stringify({
+                    content: editedContent
+                })
+            });
+        }catch(error){
+
+        }
+    }
+
   return (
     <div className="flex p-4 border-b dark: border-gray-600 text-sm">
         <div className="flex-shrink-0 mr-3">
@@ -43,6 +59,16 @@ export default function Comment({comment, onLike}) {
                 isEditing ? (
                     <>
                     <Textarea className="mb-2"  value={editedContent} onChange={(e) => setEditedContent(e.target.value)} />
+                    <div className="flex justify-end gap-2 text-xs">
+                        <Button type="button" size='sm' gradientDuoTone='purpleToBlue'
+                        onClick={handleSave}
+                        >
+                            Save
+                        </Button>
+                        <Button type="button" size='sm' gradientDuoTone='purpleToBlue' outline onClick={() => setIsEditing(false)}>
+                            Cancel
+                        </Button>
+                    </div>
                     </>
                 ) : (
                 <>
