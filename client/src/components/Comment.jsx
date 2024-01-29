@@ -40,7 +40,7 @@ export default function Comment({comment, onLike}) {
             </div>
             {
                 isEditing ? (
-                    <Textarea className="w-full p-2 text-gray-700 rounded-md resize-none focus:outline-none focus:bg-gray-100" rows='3' value={editedContent} onChange={(e) => setComment(e.target.value)} />
+                    <Textarea className="w-full p-2 text-gray-700 rounded-md resize-none focus:outline-none focus:bg-gray-100" rows='3' value={editedContent} onChange={(e) => setEditedContent(e.target.value)} />
                 ) : (
                 <>
                 <p className="text-gray-500 pb-2">{comment.content}</p>
