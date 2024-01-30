@@ -40,6 +40,10 @@ export default function Comment({comment, onLike, onEdit}) {
                     content: editedContent
                 })
             });
+            if(res.ok){
+                setIsEditing(false);
+                onEdit(comment, editedContent)
+            }
         }catch(error){
 
         }
