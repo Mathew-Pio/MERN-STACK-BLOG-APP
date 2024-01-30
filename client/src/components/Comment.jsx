@@ -45,7 +45,7 @@ export default function Comment({comment, onLike, onEdit}) {
                 onEdit(comment, editedContent)
             }
         }catch(error){
-
+            console.log(error);
         }
     }
 
